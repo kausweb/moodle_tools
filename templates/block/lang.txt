@@ -1,5 +1,3 @@
-<?php
-
 [[plugin_info]]
 
 $string['pluginname'] = '[[plugin_display_name]]';

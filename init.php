@@ -2,7 +2,7 @@
 
 require_once ('config.php');
 require_once ('lib.php');
-
+error_reporting(-1);
 /**
  * $arg = array(
  *              0 => 'script name' - always has the script name
@@ -11,7 +11,7 @@ require_once ('lib.php');
  *              3 => 'project' - eg nspc_dev
  *          );
  */
-$arg = var_dump($argv);
+$arg = $argv;
 
 // get the plugin type
 // eg blocks, local 
@@ -20,7 +20,12 @@ $plugin_name = $arg[2];
 $project = $arg[3];
 
 
-init_.$plugin_type($plugin_name, $project);
+switch ($plugin_type) {
+    case 'block':
+        init_block($plugin_name, $project);
+        break;
+}
+
 
 /**
  * Init block templates
@@ -41,13 +46,13 @@ init_.$plugin_type($plugin_name, $project);
  */
 
 function init_block($plugin_name, $project) {
+    global $config;
     $plugin_type = 'block';
-    $plugin_path = $config->projectpath .'/'. $project.'/blocks';
-    $directories = array(
-        $plugin_name, 'db','lang/en','classes'  
-    );
+    $plugin_path = $config->projectpath .'/'. $project.'/trunk/blocks/'.$plugin_name;
+    $directories = array('db','lang/en','classes');
     // placeholders
     $placeholders = array(
+        'plugin_info' => get_plugin_info($plugin_type, $plugin_name),
         'plugin_name' => $plugin_name,
         'plugin_type' => $plugin_type,
         'plugin_display_name' => get_plugin_display_name($plugin_name)
@@ -57,13 +62,13 @@ function init_block($plugin_name, $project) {
     // init version
     init_version($plugin_type, $plugin_name, $plugin_path);
     // init base class
-    init_base($plugin_type, $plugin_path, $plugin_path, $placeholders);
+    init_base($plugin_type, $plugin_name, $plugin_path, $placeholders);
     // init access
-    init_access($plugin_type, $plugin_path, $plugin_path, $placeholders);
+    init_access($plugin_type, $plugin_name, $plugin_path, $placeholders);
     // init install
-    init_install($plugin_type, $plugin_path, $plugin_path, $placeholders);
+    init_install($plugin_type, $plugin_name, $plugin_path, $placeholders);
     // init lang 
-    init_lang($plugin_type, $plugin_path, $plugin_path, $placeholders);
+    init_lang($plugin_type, $plugin_name, $plugin_path, $placeholders);
     // inin renderer
-    init_renderer($plugin_type, $plugin_path, $plugin_path, $placeholders);
+    init_renderer($plugin_type, $plugin_name, $plugin_path, $placeholders);
 }

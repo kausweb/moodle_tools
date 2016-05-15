@@ -1,7 +1,4 @@
-<?php
-
 [[plugin_info]]
-
 
 class block_[[plugin_name]] extends block_base {
     

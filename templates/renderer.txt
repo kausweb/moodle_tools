@@ -1,5 +1,3 @@
-<?php
-
 [[plugin_info]]
 
 class [[plugin_type]]_[[plugin_name]]_renderer extends plugin_renderer_base {

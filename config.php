@@ -13,4 +13,4 @@ $config = new stdClass();
 
 $config->author = 'kaushtuv.gurung';
 $config->moodleversion = 2014110400;
-$config->projectpath = 'c:/htdocs'; 
+$config->projectpath = '/Users/kaushtuvgurung/Projects'; 

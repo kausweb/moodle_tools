@@ -1,5 +1,3 @@
-<?php
-
 [[plugin_info]]
 
 defined('MOODLE_INTERNAL') || die();
