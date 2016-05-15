@@ -1,0 +1,29 @@
+<?php
+
+[[plugin_info]]
+
+defined('MOODLE_INTERNAL') || die();
+
+require_once ($CFG->dirroot . '/blocks/[[plugin_name]]/block_[[plugin_name]].php');
+
+class block_[[plugin_name]]_edit_form extends block_edit_form {
+    
+    protected function specific_definition($mform) {
+        
+        $block = block_instance('[[plugin_name]]', $this->block->instance);
+        
+        $mform->addElement('header', 'configheader', get_string('whattodisplay', 'block_[[plugin_name]]'));
+        
+        $mform->addElement('text', 'config_displayname', get_string('displayname', 'block_[[plugin_name]]'));
+        $mform->setType('config_displayname', PARAM_TEXT);
+        $mform->addHelpButton('config_displayname' , 'displayname', 'block_[[plugin_name]]');
+    }
+    
+    public function get_data() {
+        return parent::get_data();
+    }
+    
+    public function set_data($defaults) {
+        parent::set_data($defaults);
+    }
+}

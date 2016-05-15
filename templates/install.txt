@@ -1,0 +1,10 @@
+<?php
+
+[[plugin_info]]
+
+defined('MOODLE_INTERNAL') || die();
+
+function xmldb_[[plugin_type]]_[[plugin_name]]_install() {
+    
+}
+

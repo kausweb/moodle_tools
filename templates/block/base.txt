@@ -1,0 +1,47 @@
+<?php
+
+[[plugin_info]]
+
+
+class block_[[plugin_name]] extends block_base {
+    
+    public function init() {
+        $this->title = get_string('pluginname', 'block_[[plugin_name]]');
+    }
+    
+    public function has_config() {
+        return true;
+    }
+    
+    public function instance_allow_multiple() {
+        return true;
+    }
+    
+    public function applicable_formats() {
+        return array('all' => true);
+    }
+    
+    public function specialization() {
+        if(!$this->config) {
+            return;
+        }
+        if($this->config->displayname) {
+            $this->title = $this->config->displayname;
+        }
+    }
+    
+    public function get_content() {
+
+        if ($this->content !== null) {
+            return $this->content;
+        }
+        
+        $this->content = new stdClass();
+        $this->content->text = '';                          
+        $this->content->footer = '';
+
+        return $this->content;
+    }
+    
+        
+}

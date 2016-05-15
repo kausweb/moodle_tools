@@ -1,0 +1,9 @@
+/**
+ * Comment
+ *
+ * @package    [[package]]
+ * @subpackage [[subpackage]]
+ * @copyright  &copy; [[year]] CG Kineo {@link http://www.kineo.com}
+ * @author     [[author]]
+ * @version    1.0
+ */

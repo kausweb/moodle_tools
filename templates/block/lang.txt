@@ -1,0 +1,13 @@
+<?php
+
+[[plugin_info]]
+
+$string['pluginname'] = '[[plugin_display_name]]';
+$string['[[pluginname]]'] = '[[plugin_display_name]]';
+$string['[[pluginname]]:addinstance'] = 'Add a new [[plugin_display_name]] block';
+$string['[[pluginname]]:myaddinstance'] = 'Add a new [[plugin_display_name]] block to the My Moodle page';
+
+// settings form
+$string['whattodisplay'] = 'What to display';
+$string['displayname'] = 'Display name';
+$string['displayname_help'] = 'Add a custom display name for the block. The default is [[plugin_display_name]]';
