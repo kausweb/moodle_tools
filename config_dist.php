@@ -14,3 +14,4 @@ $config = new stdClass();
 $config->author = 'kaushtuv.gurung';
 $config->moodleversion = 2014110400;
 $config->projectpath = 'c:/htdocs'; 
+$config->copyright = '&copy; '.date('Y').' Company {@link http://www.company.com}';
