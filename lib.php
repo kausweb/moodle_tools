@@ -175,7 +175,7 @@ function get_plugin_info($plugin_type, $plugin_name) {
     $placeholders = array(
         'package' => $plugin_type, 
         'subpackage' => $plugin_name,
-        'year' => date('Y'),
+        'copyright' => $config->copyright,
         'author' => $config->author,
         );
     return replace_placeholder($string, $placeholders);
@@ -206,6 +206,41 @@ function replace_placeholder($string, $placeholders) {
 function get_plugin_display_name($plugin_name) {
     return str_replace('_',' ', ucfirst($plugin_name));
     
+}
+
+/**
+ * Returns base placeholders
+ * 
+ * @param string $plugin_type
+ * @param string $plugin_name
+ * @return array placeholders
+ */
+function get_base_placeholders($plugin_type, $plugin_name) {
+    return array(
+        'plugin_info' => get_plugin_info($plugin_type, $plugin_name),
+        'plugin_name' => $plugin_name,
+        'plugin_type' => $plugin_type,
+        'plugin_display_name' => get_plugin_display_name($plugin_name)
+    );
+}
+
+
+/**
+ * init plugin files
+ * 
+ * @param string $plugin_type
+ * @param string $plugin_name
+ * @param string $plugin_path
+ * @param array $placeholders
+ * @param array $files
+ */
+function init_files($plugin_type, $plugin_name, $plugin_path, $placeholders, $files) {
+    // init files
+    foreach($files as $f) {
+        if(function_exists('init_'.$f)) {
+            call_user_func('init_'.$f, $plugin_type, $plugin_name, $plugin_path, $placeholders);
+        }
+    }
 }
 
 

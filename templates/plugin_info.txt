@@ -3,7 +3,7 @@
  *
  * @package    [[package]]
  * @subpackage [[subpackage]]
- * @copyright  &copy; [[year]] CG Kineo {@link http://www.kineo.com}
+ * @copyright  [[copyright]]
  * @author     [[author]]
  * @version    1.0
  */
