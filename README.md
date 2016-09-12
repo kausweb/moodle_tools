@@ -12,3 +12,9 @@
 - php init.php -f moodle_project_foder plugin_type plugin_name
 - e.g. php init.php -f myproject_dev block my_block
 
+
+- To copy theme
+- Run from terminal
+- php theme.php project theme_source theme_new
+- eg php theme.php myproject_dev client1 awesome
+
