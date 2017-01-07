@@ -30,7 +30,7 @@ function init_local($plugin_name, $project) {
     init_version($plugin_type, $plugin_name, $plugin_path);
 
     // set plugin base files
-    $files = array('lang','index');
+    $files = array('lang','index','lib');
     // init files
     init_files($plugin_type, $plugin_name, $plugin_path, $placeholders, $files);
 }

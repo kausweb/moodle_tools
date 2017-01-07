@@ -162,6 +162,21 @@ function init_index($plugin_type, $plugin_name, $plugin_path, $placeholders) {
 }
 
 /**
+ * Create a lib.php file
+ *
+ * @param string $plugin_type
+ * @param string $plugin_name
+ * @param string $plugin_path
+ * @param array $placeholders
+ */
+function init_lib($plugin_type, $plugin_name, $plugin_path, $placeholders) {
+    $string = file_get_contents('templates/'.$plugin_type.'/lib.txt');
+    // write access.php file.
+    $file_path = $plugin_path.'/lib.php';
+    write_file($file_path, replace_placeholder($string, $placeholders));
+}
+
+/**
  * A common function to write content to a file
  *
  * @param string $file_path
