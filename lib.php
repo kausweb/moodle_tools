@@ -13,7 +13,7 @@ require_once ('config.php');
 
 /**
  * Creates directories
- * 
+ *
  * @param type $plugin_path
  * @param type $directories
  */
@@ -30,7 +30,7 @@ function init_dirs($plugin_path, $directories) {
 
 /**
  * Create a basic base class
- * 
+ *
  * @param string $plugin_type
  * @param string $plugin_name
  * @param string $plugin_path
@@ -45,7 +45,7 @@ function init_base($plugin_type, $plugin_name, $plugin_path, $placeholders) {
 
 /**
  * Create a basic renderer class
- * 
+ *
  * @param string $plugin_type
  * @param string $plugin_name
  * @param string $plugin_path
@@ -60,7 +60,7 @@ function init_renderer($plugin_type, $plugin_name, $plugin_path, $placeholders) 
 
 /**
  * Create a basic base class
- * 
+ *
  * @param string $plugin_type
  * @param string $plugin_name
  * @param string $plugin_path
@@ -76,7 +76,7 @@ function init_edit_form($plugin_type, $plugin_name, $plugin_path, $placeholders)
 
 /**
  * Generates a basic language file
- * 
+ *
  * @param string $plugin_type
  * @param string $plugin_name
  * @param string $plugin_path
@@ -93,7 +93,7 @@ function init_lang($plugin_type, $plugin_name, $plugin_path, $placeholders) {
 
 /**
  * Generates a version file
- * 
+ *
  * @param string $plugin_type
  * @param string $plugin_name
  * @param string $plugin_path
@@ -109,16 +109,16 @@ function init_version($plugin_type, $plugin_name, $plugin_path) {
         'component' => $plugin_type.'_'.$plugin_name,
         'release' => '1'
         );
-    
+
     // write version.php file.
     $file_path = $plugin_path . '/version.php';
     write_file($file_path, replace_placeholder($string, $placeholders));
-    
+
 }
 
 /**
  * Create a basic access file
- * 
+ *
  * @param string $plugin_type
  * @param string $plugin_name
  * @param string $plugin_path
@@ -133,7 +133,7 @@ function init_access($plugin_type, $plugin_name, $plugin_path, $placeholders) {
 
 /**
  * Create a basic install file
- * 
+ *
  * @param string $plugin_type
  * @param string $plugin_name
  * @param string $plugin_path
@@ -147,8 +147,23 @@ function init_install($plugin_type, $plugin_name, $plugin_path, $placeholders) {
 }
 
 /**
+ * Create a index.php file
+ *
+ * @param string $plugin_type
+ * @param string $plugin_name
+ * @param string $plugin_path
+ * @param array $placeholders
+ */
+function init_index($plugin_type, $plugin_name, $plugin_path, $placeholders) {
+    $string = file_get_contents('templates/'.$plugin_type.'/index.txt');
+    // write access.php file.
+    $file_path = $plugin_path.'/index.php';
+    write_file($file_path, replace_placeholder($string, $placeholders));
+}
+
+/**
  * A common function to write content to a file
- * 
+ *
  * @param string $file_path
  * @param string $content
  */
@@ -163,17 +178,17 @@ function write_file($file_path, $content) {
 
 /**
  * Gets the plugin header info
- * 
+ *
  * @param type $plugin_type
  * @param type $plugin_name
- * @return string 
+ * @return string
  */
 
 function get_plugin_info($plugin_type, $plugin_name) {
     global $config;
     $string = file_get_contents('templates/plugin_info.txt');
     $placeholders = array(
-        'package' => $plugin_type, 
+        'package' => $plugin_type,
         'subpackage' => $plugin_name,
         'copyright' => $config->copyright,
         'author' => $config->author,
@@ -183,7 +198,7 @@ function get_plugin_info($plugin_type, $plugin_name) {
 
 /**
  * Replaces placeholder from the template file
- * 
+ *
  * @param string $string
  * @param array $placeholders
  * @return type
@@ -197,20 +212,20 @@ function replace_placeholder($string, $placeholders) {
 }
 
 /**
- * Split plugin name to remove underscore and make the first letter of the first 
+ * Split plugin name to remove underscore and make the first letter of the first
  * word an uppercase
- * 
+ *
  * @param string $plugin_name
  * @return string plugin name
  */
 function get_plugin_display_name($plugin_name) {
     return str_replace('_',' ', ucfirst($plugin_name));
-    
+
 }
 
 /**
  * Returns base placeholders
- * 
+ *
  * @param string $plugin_type
  * @param string $plugin_name
  * @return array placeholders
@@ -227,7 +242,7 @@ function get_base_placeholders($plugin_type, $plugin_name) {
 
 /**
  * init plugin files
- * 
+ *
  * @param string $plugin_type
  * @param string $plugin_name
  * @param string $plugin_path
