@@ -1,0 +1,64 @@
+<?php
+defined('MOODLE_INTERNAL') || die();
+
+require_once($CFG->dirroot . '/theme/cgkineoframework/builder/lib.php');
+require_once($CFG->dirroot . '/totara/core/js/lib/setup.php');
+
+/**
+ * Makes our changes to the CSS
+ *
+ * @param string $css
+ * @param theme_config $theme
+ * @return string
+ */
+function theme_[[plugin_name]]_process_css($css, $theme) {
+    global $CFG;
+    // change Url for fontawesome etc
+    $css = str_replace('[[setting:www]]', $CFG->wwwroot, $css);
+
+    // Set the custom CSS
+    // all configuration and default values
+    $cssconfigs = array(
+        'hidecourseicon_multiselect' => ''
+    );
+    foreach ($theme->settings as $configname => $configvalue) {
+        // if it is a config parameter
+        if (isset($cssconfigs[$configname]) && !empty($theme->settings->$configname)) {
+            $cssconfigs[$configname] = $configvalue;
+        }
+    }
+    if(!empty($cssconfigs['hidecourseicon_multiselect'])) {
+        $cssconfigs['hidecourseicon_multiselect'] = $cssconfigs['hidecourseicon_multiselect'] ? 'none' : 'inherit';
+    }
+
+    $replacenames = $replacevalues = array();
+    foreach ($cssconfigs as $configname => $configvalue) {
+        $replacenames[]= "[[setting:$configname]]";
+        $replacevalues[]= $configvalue;
+    }
+    $css = str_replace($replacenames, $replacevalues, $css);
+    // Set custom CSS
+    if (!empty($theme->settings->customcss)) {
+        $customcss = $theme->settings->customcss;
+    } else {
+        $customcss = null;
+    }
+    $css = theme_[[plugin_name]]_set_customcss($css, $customcss);
+    return $css;
+}
+/**
+ * Sets the custom css variable in CSS
+ *
+ * @param string $css
+ * @param mixed $customcss
+ * @return string
+ */
+function theme_[[plugin_name]]_set_customcss($css, $customcss) {
+    $tag = '[[setting:customcss]]';
+    $replacement = $customcss;
+    if (is_null($replacement)) {
+        $replacement = '';
+    }
+    $css = str_replace($tag, $replacement, $css);
+    return $css;
+}

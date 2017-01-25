@@ -1,0 +1,28 @@
+[[plugin_info]]
+
+defined('MOODLE_INTERNAL') || die;
+
+$settings = null;
+
+$ADMIN->add('themes', new admin_category('[[plugin_name]]', get_string('pluginname', '[[plugin_name]]')));
+
+// Theme Settings
+$temp = new admin_settingpage('[[plugin_name]]_custom',  get_string('customsetting', '[[plugin_name]]'));
+
+// Toogle multiselect
+$name = 'theme_[[plugin_name]]/hidecourseicon_multiselect';
+$title = get_string('hidecourseicon_multiselect', '[[plugin_name]]');
+$description = get_string('hidecourseicon_multiselectdesc', '[[plugin_name]]');
+$setting = new admin_setting_configcheckbox($name, $title, $description, false);
+$setting->set_updatedcallback('theme_selfservice_cache_reset');
+$temp->add($setting);
+
+// Custom CSS file.
+$name = 'theme_[[plugin_name]]/customcss';
+$title = new lang_string('customcss','[[plugin_name]]');
+$description = new lang_string('customcssdesc', '[[plugin_name]]');
+$setting = new admin_setting_configtextarea($name, $title, $description, '');
+$setting->set_updatedcallback('theme_reset_all_caches');
+$temp->add($setting);
+
+$ADMIN->add('[[plugin_name]]', $temp);

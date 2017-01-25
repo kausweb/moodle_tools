@@ -72,3 +72,7 @@ function initTheme($source, $search, $replace){
     $lang_new = $source . '/lang/en/theme_' . $replace . '.php';
     rename($lang_old, $lang_new);
 }
+
+function add_custom_css() {
+    
+}

@@ -4,6 +4,6 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->version   = [[version]];
 $plugin->requires  = [[requires]]; // Requires this Moodle version
-$plugin->component = [[component]];
+$plugin->component = '[[component]]';
 $plugin->release   = [[release]];
 $plugin->dependencies = array();
