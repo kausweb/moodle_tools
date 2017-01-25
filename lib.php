@@ -166,3 +166,50 @@ function get_base_placeholders($plugin_type, $plugin_name) {
     );
 }
 
+/**
+ * Copy theme
+ *
+ * @param type $source
+ * @param type $dest
+ */
+function copy_theme($source, $dest) {
+    mkdir($dest, 0755);
+    foreach (
+        $iterator = new \RecursiveIteratorIterator(
+        new \RecursiveDirectoryIterator($source, \RecursiveDirectoryIterator::SKIP_DOTS),
+        \RecursiveIteratorIterator::SELF_FIRST) as $item
+        ) {
+            if ($item->isDir()) {
+                mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+            } else {
+                copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+            }
+    }
+}
+
+/**
+ * Make changes to the copied theme to reflect the new theme name
+ *
+ * @param type $source
+ * @param type $search
+ * @param type $replace
+ */
+function initTheme($source, $search, $replace){
+	foreach (
+        $iterator = new \RecursiveIteratorIterator(
+        new \RecursiveDirectoryIterator($source, \RecursiveDirectoryIterator::SKIP_DOTS),
+        \RecursiveIteratorIterator::SELF_FIRST) as $item
+        ) {
+            if (!$item->isDir()) {
+                $file = $item->getPathname();
+                $file_content = file_get_contents($file);
+                $file_contents = str_replace($search,$replace,$file_content);
+                file_put_contents($file, $file_contents);
+            }
+    }
+
+    // rename lang file
+    $lang_old = $source . '/lang/en/theme_' . $search . '.php';
+    $lang_new = $source . '/lang/en/theme_' . $replace . '.php';
+    rename($lang_old, $lang_new);
+}
