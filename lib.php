@@ -130,7 +130,11 @@ function init_files($plugin_type, $plugin_name, $plugin_path, $placeholders, $fi
 function write_file($file_path, $content) {
     if(!file_exists($file_path)){
         $file = fopen($file_path, 'w');
-        fwrite($file, "<?php \n\n". $content);
+        if(substr($file_path, -3) != 'php') {
+            fwrite($file, $content);
+        }else{
+            fwrite($file, "<?php \n\n". $content);
+        }
         fclose($file);
     }
 }

@@ -45,7 +45,7 @@ function init($base_themename, $new_themename, $project) {
     $files = array(
         'lib' => array('templatepath' => 'templates/'.$plugin_type.'/lib.txt', 'filepath' => $dest.'/lib.php'),
         'settings' => array('templatepath' => 'templates/'.$plugin_type.'/settings.txt', 'filepath' => $dest.'/settings.php'),
-        'settings_css' => array('templatepath' => 'templates/'.$plugin_type.'/settings_css.txt', 'filepath' => $dest.'/style/settings.php')
+        'settings_css' => array('templatepath' => 'templates/'.$plugin_type.'/settings_css.txt', 'filepath' => $dest.'/style/settings.css')
     );
     // init settings files
     init_files($plugin_type, $plugin_name, $plugin_path, $placeholders, $files);
@@ -54,12 +54,24 @@ function init($base_themename, $new_themename, $project) {
     //      $THEME->csspostprocess = 'theme_cgkineoframework_process_css';
     // Add settings.css to the $THEME->sheets = array('client','settings');
 
+    // update config.php file
     $config = $dest.'/config.php';
     $current = file_get_contents($config);
     $current .= '
 $THEME->rendererfactory = \'theme_overridden_renderer_factory\';
 $THEME->csspostprocess = \'theme_cgkineoframework_process_css\';';
-    
+
     $new_config = str_replace('$THEME->sheets = array(\'client\')', '$THEME->sheets = array(\'client\',\'settings\')', $current);
     file_put_contents($config, $new_config);
+
+    // update lang file
+    $lang = $dest.'/lang/en/theme_'.$plugin_name.'.php';
+    $current_lang = file_get_contents($lang);
+    $new_lang = '
+$string[\'customsetting\'] = \'Custom settings\';
+$string[\'customcss\'] = \'Custom CSS\';
+$string[\'customcssdesc\'] = \'Any CSS you enter here will be added to every page allowing your to easily customise this theme.\';
+$string[\'hidecourseicon_multiselect\'] = \'Hide multiselect course icon\';
+$string[\'hidecourseicon_multiselectdesc\'] = \'If checked, this settings will hide the course icons on multiselect checkboxes while editing a course\';';
+     file_put_contents($lang, $current_lang . $new_lang);
 }
