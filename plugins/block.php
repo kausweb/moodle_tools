@@ -54,6 +54,7 @@ function init_block($plugin_name, $project) {
         'access' => array('templatepath' => 'templates/'.$plugin_type.'/access.txt', 'filepath' => $plugin_path.'/db/access.php'),
         'install' => array('templatepath' => 'templates/install.txt', 'filepath' => $plugin_path.'/db/install.php'),
         'renderer' => array('templatepath' => 'templates/renderer.txt', 'filepath' => $plugin_path.'/classes/renderer.php'),
+        'edit_form' => array('templatepath' => 'templates/'.$plugin_type.'/edit_form.txt', 'filepath' => $plugin_path.'/edit_form.php'),
     );
     // init files
     init_files($plugin_type, $plugin_name, $plugin_path, $placeholders, $files);

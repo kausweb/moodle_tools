@@ -2,8 +2,6 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once ($CFG->dirroot . '/blocks/[[plugin_name]]/block_[[plugin_name]].php');
-
 class block_[[plugin_name]]_edit_form extends block_edit_form {
     
     protected function specific_definition($mform) {
