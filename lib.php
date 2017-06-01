@@ -38,7 +38,7 @@ function init_dirs($plugin_path, $directories) {
  */
 
 function init_lang($plugin_type, $plugin_name, $plugin_path, $placeholders) {
-    $placeholders['pluginname'] = str_replace('_', '', $plugin_name); // this is a string value
+    $placeholders['pluginname'] = $plugin_name; // this is a string value
     $string = file_get_contents('templates/'.$plugin_type.'/lang.txt');
     // write lang file.
     $file_path = $plugin_path . '/lang/en/'.$plugin_type.'_'.$plugin_name.'.php';
