@@ -38,7 +38,7 @@ function init_block($plugin_name, $project) {
     global $config;
     $plugin_type = 'block';
     $plugin_path = $config->projectpath .'/'. $project.'/trunk/blocks/'.$plugin_name;
-    $directories = array('db','lang/en','classes');
+    $directories = array('db','lang/en','classes/output');
     // placeholders
     $placeholders = get_base_placeholders($plugin_type, $plugin_name);
     // init dir
@@ -53,7 +53,7 @@ function init_block($plugin_name, $project) {
         'base' => array('templatepath' => 'templates/'.$plugin_type.'/base.txt','filepath' => $plugin_path.'/'.$plugin_type.'_'.$plugin_name.'.php'),
         'access' => array('templatepath' => 'templates/'.$plugin_type.'/access.txt', 'filepath' => $plugin_path.'/db/access.php'),
         'install' => array('templatepath' => 'templates/install.txt', 'filepath' => $plugin_path.'/db/install.php'),
-        'renderer' => array('templatepath' => 'templates/renderer.txt', 'filepath' => $plugin_path.'/classes/renderer.php'),
+        'renderer' => array('templatepath' => 'templates/renderer.txt', 'filepath' => $plugin_path.'/classes/output/renderer.php'),
         'edit_form' => array('templatepath' => 'templates/'.$plugin_type.'/edit_form.txt', 'filepath' => $plugin_path.'/edit_form.php'),
     );
     // init files
