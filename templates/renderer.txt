@@ -1,6 +1,6 @@
 [[plugin_info]]
 
-namespace [[plugin_type]]_[[plugin_name]];
+namespace [[plugin_type]]_[[plugin_name]]\output;
 
 class renderer extends \plugin_renderer_base {
     
