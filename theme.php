@@ -57,9 +57,6 @@ function init($base_themename, $new_themename, $project) {
     // update config.php file
     $config = $dest.'/config.php';
     $current = file_get_contents($config);
-    $current .= '
-$THEME->rendererfactory = \'theme_overridden_renderer_factory\';
-$THEME->csspostprocess = \'theme_cgkineoframework_process_css\';';
 
     $new_config = str_replace('$THEME->sheets = array(\'client\')', '$THEME->sheets = array(\'client\',\'settings\')', $current);
     file_put_contents($config, $new_config);
