@@ -1,6 +1,5 @@
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot . '/theme/cgkineoframework/builder/lib.php');
 require_once($CFG->dirroot . '/totara/core/js/lib/setup.php');
 
 /**
