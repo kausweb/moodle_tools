@@ -48,7 +48,8 @@ function init($base_themename, $new_themename, $project) {
 //        'settings_css' => array('templatepath' => 'templates/'.$plugin_type.'/settings_css.txt', 'filepath' => $dest.'/style/settings.css')
 //    );
     // init settings files
-    init_files($plugin_type, $plugin_name, $plugin_path, $placeholders, $files);
+    //init_files($plugin_type, $plugin_name, $plugin_path, $placeholders, $files);
+    init_files($plugin_type, $plugin_name, $plugin_path, $placeholders);
     // apply change to theme config.php
     //      $THEME->rendererfactory = 'theme_overridden_renderer_factory';
     //      $THEME->csspostprocess = 'theme_cgkineoframework_process_css';
