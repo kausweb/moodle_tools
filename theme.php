@@ -49,7 +49,6 @@ function init($base_themename, $new_themename, $project) {
 //    );
     // init settings files
     //init_files($plugin_type, $plugin_name, $plugin_path, $placeholders, $files);
-    init_files($plugin_type, $plugin_name, $plugin_path, $placeholders);
     // apply change to theme config.php
     //      $THEME->rendererfactory = 'theme_overridden_renderer_factory';
     //      $THEME->csspostprocess = 'theme_cgkineoframework_process_css';
